@@ -9,7 +9,6 @@ public class Customer{
     private String customerAddress;
     private String customerEmail;
     private String phoneNumber;
-    private List<Account> accounts;
 
     private Customer(Builder builder){
         this.customerID = builder.customerID;
@@ -18,12 +17,12 @@ public class Customer{
         this.customerAddress = builder.customerAddress;
         this.customerEmail = builder.customerEmail;
         this.phoneNumber = builder.phoneNumber;
-        this.accounts = builder.accounts;
     }
 
     public String getCustomerID(){
         return customerID;
     }
+
     public String getcustomerName(){
         return customerName;
     }
@@ -39,9 +38,6 @@ public class Customer{
     public String get phoneNumber(){
         return phoneNumber;
     }
-    public List<Account> getAccounts() {
-        return accounts;
-    }
 
     @java.lang.Override
     public java.lang.String toString() {
@@ -52,7 +48,6 @@ public class Customer{
                 ", customerAddress='" + customerAddress + '\'' +
                 ", customerEmail='" + customerEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", accounts=" + accounts +
                 '}';
     }
 
@@ -64,7 +59,6 @@ public class Customer{
         private String customerAddress;
         private String customerEmail;
         private String phoneNumber;
-        private List<Account> accounts;
 
         public Builder setCustomerID(String customerID){
             this.customerID = customerID;
@@ -91,10 +85,6 @@ public class Customer{
         }
         public Builder setPhoneNumber(String phoneNumber){
             this.phoneNumber = phoneNumber;
-            return this;
-        }
-        public Builder setAccounts(List<Account> accounts){
-            this.accounts = accounts;
             return this;
         }
         public Customer build(){
