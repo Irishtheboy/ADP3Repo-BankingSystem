@@ -29,13 +29,13 @@ public class Customer{
     public String getcustomerSurname(){
         return customerSurname;
     }
-    public String get customerAddress(){
+    public String getcustomerAddress(){
         return customerAddress;
     }
-    public String get customerEmail(){
+    public String getcustomerEmail(){
         return customerEmail;
     }
-    public String get phoneNumber(){
+    public String getphoneNumber(){
         return phoneNumber;
     }
 
