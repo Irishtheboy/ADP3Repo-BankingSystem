@@ -1,0 +1,17 @@
+package za.co.BankingSystem.Service;
+
+import za.co.BankingSystem.Domain.User;
+import za.co.BankingSystem.Repository.UserRepository;
+
+public class LoginService {
+    private UserRepository userRepository;
+
+    public LoginService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public boolean authenticate(String username, String password) {
+        User user = userRepository.findByUsername(username);
+        return user != null && user.getPassword().equals(password);
+    }
+}
