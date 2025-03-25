@@ -1,6 +1,8 @@
+//Naqeebah Khan 219099073
 package za.co.BankingSystem.Domain;
 
-import za.co.BankingSystem.Domain.Customer;
+import java.util.List;
+import za.co.BankingSystem.Domain.Account;
 
 public class Customer{
     private String customerID;
@@ -24,35 +26,35 @@ public class Customer{
     public String getCustomerID(){
         return customerID;
     }
-    public String getcustomerName(){
+    public String getCustomerName(){
         return customerName;
     }
-    public String getcustomerSurname(){
+    public String getCustomerSurname(){
         return customerSurname;
     }
-    public String get customerAddress(){
+    public String getCustomerAddress(){
         return customerAddress;
     }
-    public String get customerEmail(){
+    public String getCustomerEmail(){
         return customerEmail;
     }
-    public String get phoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
     public List<Account> getAccounts() {
         return accounts;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Customer{" +
-                "customerID='" + customerID + '\'' +
-                ", customerName='" + customerName + '\'' +
-                ", customerSurname='" + customerSurname + '\'' +
-                ", customerAddress='" + customerAddress + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", accounts=" + accounts +
+    @Override
+    public String toString() {
+        return "Customer: " +
+                "Customer ID='" + customerID + '\'' +
+                ", Name='" + customerName + '\'' +
+                ", Surname='" + customerSurname + '\'' +
+                ", Address='" + customerAddress + '\'' +
+                ", Email='" + customerEmail + '\'' +
+                ", Phone Number='" + phoneNumber + '\'' +
+                ", Accounts=" + accounts +
                 '}';
     }
 
