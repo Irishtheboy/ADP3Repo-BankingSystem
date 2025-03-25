@@ -1,0 +1,27 @@
+package za.co.BankingSystem;
+
+import za.co.BankingSystem.Repository.UserRepository;
+import za.co.BankingSystem.Service.LoginService;
+import java.util.Scanner;
+
+public class MainApplication {
+    public static void main(String[] args) {
+        UserRepository userRepository = new UserRepository();
+        LoginService loginService = new LoginService(userRepository);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Banking System");
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        if (loginService.authenticate(username, password)) {
+            System.out.println("Login successful!");
+        } else {
+            System.out.println("Invalid credentials. Please try again.");
+        }
+
+        scanner.close();
+    }
+}
