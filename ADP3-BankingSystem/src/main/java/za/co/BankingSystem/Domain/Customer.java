@@ -1,4 +1,4 @@
-//Naqeebah Khan 219099073
+// Naqeebah Khan 219099073
 package za.co.BankingSystem.Domain;
 
 import java.util.List;
@@ -11,6 +11,7 @@ public class Customer{
     private String customerAddress;
     private String customerEmail;
     private String phoneNumber;
+    private List<Account> accounts;
 
     private Customer(Builder builder){
         this.customerID = builder.customerID;
@@ -19,6 +20,8 @@ public class Customer{
         this.customerAddress = builder.customerAddress;
         this.customerEmail = builder.customerEmail;
         this.phoneNumber = builder.phoneNumber;
+        this.accounts = builder.accounts;
+
     }
 
     public String getCustomerID(){
@@ -26,12 +29,9 @@ public class Customer{
     }
 
     public String getCustomerName(){
-
-
-    public String getcustomerName(){
-
         return customerName;
     }
+
     public String getCustomerSurname(){
         return customerSurname;
     }
@@ -39,48 +39,33 @@ public class Customer{
     public String getCustomerAddress(){
         return customerAddress;
     }
+
     public String getCustomerEmail(){
         return customerEmail;
     }
+
     public String getPhoneNumber(){
-
-    public String getcustomerAddress(){
-        return customerAddress;
-    }
-    public String getcustomerEmail(){
-        return customerEmail;
-    }
-    public String getphoneNumber(){
-
         return phoneNumber;
     }
 
+    public List<Account> getAccounts(){
+        return accounts;
+    }
 
     @Override
     public String toString() {
         return "Customer: " +
-                "Customer ID='" + customerID + '\'' +
-                ", Name='" + customerName + '\'' +
-                ", Surname='" + customerSurname + '\'' +
-                ", Address='" + customerAddress + '\'' +
-                ", Email='" + customerEmail + '\'' +
-                ", Phone Number='" + phoneNumber + '\'' +
-                ", Accounts=" + accounts +
-
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Customer{" +
-                "customerID='" + customerID + '\'' +
-                ", customerName='" + customerName + '\'' +
-                ", customerSurname='" + customerSurname + '\'' +
-                ", customerAddress='" + customerAddress + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-
+                "Customer ID ='" + customerID + '\'' +
+                ", Name ='" + customerName + '\'' +
+                ", Surname ='" + customerSurname + '\'' +
+                ", Address ='" + customerAddress + '\'' +
+                ", Email ='" + customerEmail + '\'' +
+                ", Phone Number ='" + phoneNumber + '\'' +
+                ", Accounts =" + accounts +
                 '}';
     }
 
-    //builder//
+    // Builder
     public static class Builder{
         private String customerID;
         private String customerName;
@@ -88,6 +73,7 @@ public class Customer{
         private String customerAddress;
         private String customerEmail;
         private String phoneNumber;
+        private List<Account> accounts;
 
         public Builder setCustomerID(String customerID){
             this.customerID = customerID;
@@ -108,18 +94,24 @@ public class Customer{
             this.customerAddress = customerAddress;
             return this;
         }
+
         public Builder setCustomerEmail(String customerEmail){
             this.customerEmail = customerEmail;
             return this;
         }
+
         public Builder setPhoneNumber(String phoneNumber){
             this.phoneNumber = phoneNumber;
             return this;
         }
+
+        public Builder setAccounts(List<Account> accounts){
+            this.accounts = accounts;
+            return this;
+        }
+
         public Customer build(){
             return new Customer(this);
         }
-
-
     }
 }
