@@ -5,10 +5,12 @@ import java.util.regex.Pattern;
 
 public class Helper {
 
-    // Generate a unique ID using UUID
+
     public static String generateID() {
         return UUID.randomUUID().toString();
+
     }
+
 
     // Validate email format
     public static boolean isValidEmail(String email) {

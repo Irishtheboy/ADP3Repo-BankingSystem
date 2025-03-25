@@ -1,11 +1,11 @@
 package za.co.BankingSystem.Domain;
 
 public class Admin {
-    private final String adminID;
-    private final String name;
-    private final String email;
-    private final String role;
-    private final String contactNumber;
+    public String adminID;
+    private  String name;
+    private  String email;
+    private  String role;
+    private  String contactNumber;
 
     private Admin(Builder builder) {
         this.adminID = builder.adminID;
@@ -14,6 +14,8 @@ public class Admin {
         this.role = builder.role;
         this.contactNumber = builder.contactNumber;
     }
+
+
 
     public static class Builder {
         private String adminID;
@@ -52,10 +54,5 @@ public class Admin {
         }
     }
 
-    // Getters
-    public String getAdminID() { return adminID; }
-    public String getName() { return name; }
-    public String getEmail() { return email; }
-    public String getRole() { return role; }
-    public String getContactNumber() { return contactNumber; }
+
 }
