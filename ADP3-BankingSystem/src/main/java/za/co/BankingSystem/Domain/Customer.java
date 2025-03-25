@@ -1,6 +1,8 @@
+//Naqeebah Khan 219099073
 package za.co.BankingSystem.Domain;
 
-import za.co.BankingSystem.Domain.Customer;
+import java.util.List;
+import za.co.BankingSystem.Domain.Account;
 
 public class Customer{
     private String customerID;
@@ -23,12 +25,25 @@ public class Customer{
         return customerID;
     }
 
+    public String getCustomerName(){
+
+
     public String getcustomerName(){
+
         return customerName;
     }
-    public String getcustomerSurname(){
+    public String getCustomerSurname(){
         return customerSurname;
     }
+
+    public String getCustomerAddress(){
+        return customerAddress;
+    }
+    public String getCustomerEmail(){
+        return customerEmail;
+    }
+    public String getPhoneNumber(){
+
     public String getcustomerAddress(){
         return customerAddress;
     }
@@ -36,8 +51,21 @@ public class Customer{
         return customerEmail;
     }
     public String getphoneNumber(){
+
         return phoneNumber;
     }
+
+
+    @Override
+    public String toString() {
+        return "Customer: " +
+                "Customer ID='" + customerID + '\'' +
+                ", Name='" + customerName + '\'' +
+                ", Surname='" + customerSurname + '\'' +
+                ", Address='" + customerAddress + '\'' +
+                ", Email='" + customerEmail + '\'' +
+                ", Phone Number='" + phoneNumber + '\'' +
+                ", Accounts=" + accounts +
 
     @java.lang.Override
     public java.lang.String toString() {
@@ -48,6 +76,7 @@ public class Customer{
                 ", customerAddress='" + customerAddress + '\'' +
                 ", customerEmail='" + customerEmail + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+
                 '}';
     }
 
