@@ -11,7 +11,6 @@ public class Customer{
     private String customerAddress;
     private String customerEmail;
     private String phoneNumber;
-    private List<Account> accounts;
 
     private Customer(Builder builder){
         this.customerID = builder.customerID;
@@ -20,18 +19,23 @@ public class Customer{
         this.customerAddress = builder.customerAddress;
         this.customerEmail = builder.customerEmail;
         this.phoneNumber = builder.phoneNumber;
-        this.accounts = builder.accounts;
     }
 
     public String getCustomerID(){
         return customerID;
     }
+
     public String getCustomerName(){
+
+
+    public String getcustomerName(){
+
         return customerName;
     }
     public String getCustomerSurname(){
         return customerSurname;
     }
+
     public String getCustomerAddress(){
         return customerAddress;
     }
@@ -39,11 +43,18 @@ public class Customer{
         return customerEmail;
     }
     public String getPhoneNumber(){
+
+    public String getcustomerAddress(){
+        return customerAddress;
+    }
+    public String getcustomerEmail(){
+        return customerEmail;
+    }
+    public String getphoneNumber(){
+
         return phoneNumber;
     }
-    public List<Account> getAccounts() {
-        return accounts;
-    }
+
 
     @Override
     public String toString() {
@@ -55,6 +66,17 @@ public class Customer{
                 ", Email='" + customerEmail + '\'' +
                 ", Phone Number='" + phoneNumber + '\'' +
                 ", Accounts=" + accounts +
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Customer{" +
+                "customerID='" + customerID + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", customerSurname='" + customerSurname + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", customerEmail='" + customerEmail + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+
                 '}';
     }
 
@@ -66,7 +88,6 @@ public class Customer{
         private String customerAddress;
         private String customerEmail;
         private String phoneNumber;
-        private List<Account> accounts;
 
         public Builder setCustomerID(String customerID){
             this.customerID = customerID;
@@ -95,12 +116,10 @@ public class Customer{
             this.phoneNumber = phoneNumber;
             return this;
         }
-        public Builder setAccounts(List<Account> accounts){
-            this.accounts = accounts;
-            return this;
-        }
         public Customer build(){
             return new Customer(this);
         }
+
+
     }
 }
