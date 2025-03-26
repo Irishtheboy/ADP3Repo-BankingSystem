@@ -14,7 +14,7 @@ public class BankFactory {
             throw new IllegalArgumentException("Bank name or address cannot be empty");
         }
 
-        if (Helper.isValidPhoneNumber(contactNumber)) {
+        if (!Helper.isValidPhoneNumber(contactNumber)) {
             throw new IllegalArgumentException("Contact number is invalid");
         }
 
@@ -35,7 +35,7 @@ public class BankFactory {
             throw new IllegalArgumentException("Bank name or address cannot be empty");
         }
 
-        if (Helper.isValidPhoneNumber(contactNumber)) {
+        if (!Helper.isValidPhoneNumber(contactNumber)) {
             throw new IllegalArgumentException("Contact number is invalid");
         }
 
