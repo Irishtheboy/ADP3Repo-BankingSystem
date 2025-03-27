@@ -54,5 +54,23 @@ public class Admin {
         }
     }
 
+    public String getAdminID() {
+        return adminID;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
 }
