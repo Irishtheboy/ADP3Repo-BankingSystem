@@ -13,9 +13,11 @@ public class CheckingAccountFactory {
          throw new IllegalArgumentException("Monthly fee must be greater than zero");
      }
 
-     String debitCardNumber = Helper.generateID().substring(0, 12).replace("-", "");
+        String checkingAccountID = Helper.generateID();
+        String debitCardNumber = Helper.generateID().substring(0, 12).replace("-", "");
 
      return new CheckingAccount.Builder()
+             .setCheckingAccountID(checkingAccountID)
              .setOverdraftLimit(overdraftLimit)
              .setMonthlyFee(monthlyFee)
              .setDebitCardNumber(debitCardNumber)
