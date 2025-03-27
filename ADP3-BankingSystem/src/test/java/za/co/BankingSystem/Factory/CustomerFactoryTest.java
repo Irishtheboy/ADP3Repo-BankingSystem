@@ -1,4 +1,4 @@
-//Naqeebah khan 219099073
+// Naqeebah Khan 219099073
 package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.Customer;
@@ -15,52 +15,47 @@ class CustomerFactoryTest {
     private static List<Account> emptyAccountList = new ArrayList<>();
 
     private static Customer c1 = CustomerFactory.createCustomer(
-            "C001",
             "Naqeebah",
             "Khan",
             "88 Miami Street",
             "naqeebah@gmail.com",
-            "072 434 6731",
+            "0724346731",
             emptyAccountList
     );
 
     private static Customer c2 = CustomerFactory.createCustomer(
-            "C002",
             "Franco",
             "Lukhele",
             "42 Barcelona Close",
             "francolukhele@gmail.com",
-            "073 964 3861",
+            "0739643861",
             emptyAccountList
     );
 
     private static Customer c3 = CustomerFactory.createCustomer(
-            "C003",
             "Teyana",
             "Raubenheimer",
             "4 Amsterdam Way",
             "RaubenheimerT@gmail.com",
-            "062 886 9372",
+            "0628869372",
             emptyAccountList
     );
 
     private static Customer c4 = CustomerFactory.createCustomer(
-            "C004",
             "Rorisang",
             "Makgana",
             "108 Madrid Street",
             "Rorimakgana@gmail.com",
-            "063 861 4396",
+            "0638614396",
             emptyAccountList
     );
 
     private static Customer c5 = CustomerFactory.createCustomer(
-            "C005",
             "Seymour",
             "Lawrence",
             "78 London Way",
             "SLawrence@gmail.com",
-            "072 618 6729",
+            "0726186729",
             emptyAccountList
     );
 
@@ -99,11 +94,14 @@ class CustomerFactoryTest {
         System.out.println(c5.toString());
     }
 
-
-
-
-
-
-
-
+    @Test
+    @Order(6)
+    public void testCreateCustomerWithInvalidName() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            CustomerFactory.createCustomer("", "Khan", "88 Miami Street",
+                    "testemail@gmail.com", "0724346731", emptyAccountList);
+        });
+        assertEquals("Customer name, surname, or address cannot be empty", exception.getMessage());
+    }
 }
+
