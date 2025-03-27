@@ -68,6 +68,8 @@ class TransactionRepositoryTest {
         assertNotNull(result);
         assertEquals("Transfer", result.getTransactionType());
         assertEquals(300.00, result.getAmount());
+
+        System.out.println(updatedTransaction);
     }
 
     @Test
