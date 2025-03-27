@@ -1,3 +1,9 @@
+
+package za.co.BankingSystem.Factory;
+
+public class CustomerFactory {
+    
+
 // Naqeebah Khan 219099073
 
 package za.co.BankingSystem.Factory;
@@ -38,4 +44,5 @@ public class CustomerFactory {
                 .setAccounts(accounts != null ? accounts : new ArrayList<>())
                 .build();
     }
+
 }
