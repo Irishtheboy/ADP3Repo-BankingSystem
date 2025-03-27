@@ -1,13 +1,13 @@
 package za.co.BankingSystem.Repository;
 
 import za.co.BankingSystem.Domain.Admin;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ *
+ * Author: Franco Lukhele
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AdminRepositoryTest {
 
@@ -15,26 +15,27 @@ class AdminRepositoryTest {
 
     private static Admin admin1 = new Admin.Builder()
             .setAdminID("A001")
-            .setName("Admin One")
-            .setEmail("admin1@example.com")
+            .setName("Naqeebah Khan")
+            .setEmail("naqeebah.khan@gmail.com")
             .setRole("Manager")
-            .setContactNumber("123456789")
+            .setContactNumber("1234567890")
             .build();
 
     private static Admin admin2 = new Admin.Builder()
             .setAdminID("A002")
-            .setName("Admin Two")
-            .setEmail("admin2@example.com")
-            .setRole("Supervisor")
-            .setContactNumber("987654321")
+            .setName("Rorisang Simphiwe")
+            .setEmail("rorisang.simphiwe@gmail.com")
+            .setRole("Admin")
+            .setContactNumber("1234567891")
             .build();
 
     @Test
     @Order(1)
+
     public void testCreateAdmin() {
         Admin createdAdmin = adminRepo.create(admin1);
         assertNotNull(createdAdmin);
-        assertEquals("A001", createdAdmin.adminID);
+        assertEquals("A001", createdAdmin.getAdminID());
         System.out.println("Created Admin: " + createdAdmin.toString());
     }
 
@@ -43,7 +44,7 @@ class AdminRepositoryTest {
     public void testReadAdmin() {
         Admin foundAdmin = adminRepo.read("A001");
         assertNotNull(foundAdmin);
-        assertEquals("Admin One", foundAdmin.getName());
+        assertEquals("Naqeebah Khan", foundAdmin.getName());
         System.out.println("Read Admin: " + foundAdmin.toString());
     }
 
@@ -52,15 +53,15 @@ class AdminRepositoryTest {
     public void testUpdateAdmin() {
         admin1 = new Admin.Builder()
                 .setAdminID("A001")
-                .setName("Updated Admin One")
-                .setEmail("updatedadmin1@example.com")
+                .setName("Updated Naqeebah Khan")
+                .setEmail("updated.naqeebah.khan@gmail.com")
                 .setRole("Head Manager")
                 .setContactNumber("111222333")
                 .build();
 
         Admin updatedAdmin = adminRepo.update(admin1);
         assertNotNull(updatedAdmin);
-        assertEquals("Updated Admin One", updatedAdmin.getName());
+        assertEquals("Updated Naqeebah Khan", updatedAdmin.getName());
         System.out.println("Updated Admin: " + updatedAdmin.toString());
     }
 

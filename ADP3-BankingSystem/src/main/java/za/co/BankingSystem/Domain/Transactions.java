@@ -1,14 +1,19 @@
 package za.co.BankingSystem.Domain;
 
 import java.util.Date;
-
+/**
+ * Transactions class representing transactions in the system.
+ * This class uses the Builder pattern for constructing Transaction objects.
+ *
+ * Author: Franco Lukhele
+ */
 public class Transactions {
-    private final String transactionID;
-    private final String transactionType;
-    private final double amount;
-    private final Date transactionDate;
-    private final Account sourceAccount;
-    private final Account destinationAccount; // Optional for transfers
+    private String transactionID;
+    private  String transactionType;
+    private  double amount;
+    private  Date transactionDate;
+    private  Account sourceAccount;
+    private  Account destinationAccount; // Optional for transfers
 
     private Transactions(Builder builder) {
         this.transactionID = builder.transactionID;
@@ -62,7 +67,7 @@ public class Transactions {
         }
     }
 
-    // Getters
+
     public String getTransactionID() { return transactionID; }
     public String getTransactionType() { return transactionType; }
     public double getAmount() { return amount; }

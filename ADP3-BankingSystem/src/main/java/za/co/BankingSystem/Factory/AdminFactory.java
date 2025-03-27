@@ -2,7 +2,13 @@ package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.Admin;
 import za.co.BankingSystem.Util.Helper;
-
+/**
+ * AdminFactory class to construct Admin objects.
+ * This class uses the Builder pattern for constructing Admin objects.
+ * It also performs validation on the input fields before creating an Admin.
+ *
+ * Author: Franco Lukhele
+ */
 public class AdminFactory {
     public static Admin createAdmin(String name, String email, String role, String contactNumber) {
         // Generate unique admin ID

@@ -1,9 +1,7 @@
 package za.co.BankingSystem.Factory;
 
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import za.co.BankingSystem.Domain.Account;
 import za.co.BankingSystem.Domain.Transactions;
 
@@ -11,73 +9,119 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TransactionsFactoryTest {
 
-    // Sample accounts
-    private static final Account sourceAccount = new Account.Builder()
-            .setAccountNumber("A100")
-            .setAccountType("Savings")
-            .setBalance(5000)
-            .setDateOpened(new Date())
-            .build();
+    private Account sourceAccount;
+    private Account destinationAccount;
 
-    private static final Account destinationAccount = new Account.Builder()
-            .setAccountNumber("B200")
-            .setAccountType("Checking")
-            .setBalance(3000)
-            .setDateOpened(new Date())
-            .build();
+    @BeforeEach
+    void setUp() {
+        sourceAccount = new Account.Builder()
+                .setAccountNumber("A100")
+                .setAccountType("Savings")
+                .setBalance(5000)
+                .setDateOpened(new Date())
+                .build();
 
-    // Transactions
-    private static final Transactions t1 = TransactionsFactory.createTransaction(
-            "Deposit", 1000, sourceAccount, null);
-
-    private static final Transactions t2 = TransactionsFactory.createTransaction(
-            "Withdrawal", 500, sourceAccount, null);
-
-    private static final Transactions t3 = TransactionsFactory.createTransaction(
-            "Transfer", 1500, sourceAccount, destinationAccount);
-
-    private static final Transactions t4 = TransactionsFactory.createTransaction(
-            "Payment", 200, sourceAccount, destinationAccount);
-
-    private static final Transactions t5 = TransactionsFactory.createTransaction(
-            "Refund", 300, destinationAccount, sourceAccount);
-
-
-    @Test
-    @Order(1)
-    public void testCreateTransaction1() {
-        assertNotNull(t1);
-        System.out.println(t1.toString());
+        destinationAccount = new Account.Builder()
+                .setAccountNumber("B200")
+                .setAccountType("Checking")
+                .setBalance(3000)
+                .setDateOpened(new Date())
+                .build();
     }
 
     @Test
-    @Order(2)
-    public void testCreateTransaction2() {
-        assertNotNull(t2);
-        System.out.println(t2.toString());
+    void testCreateDepositTransaction() {
+        Transactions transaction = TransactionsFactory.createTransaction("Deposit", 1000, sourceAccount, null);
+        assertNotNull(transaction);
+        assertEquals("Deposit", transaction.getTransactionType());
+        assertEquals(1000, transaction.getAmount());
+        assertEquals(sourceAccount, transaction.getSourceAccount());
+        assertNull(transaction.getDestinationAccount());
     }
 
     @Test
-    @Order(3)
-    public void testCreateTransaction3() {
-        assertNotNull(t3);
-        System.out.println(t3.toString());
+    void testCreateWithdrawalTransaction() {
+        Transactions transaction = TransactionsFactory.createTransaction("Withdrawal", 500, sourceAccount, null);
+        assertNotNull(transaction);
+        assertEquals("Withdrawal", transaction.getTransactionType());
+        assertEquals(500, transaction.getAmount());
+        assertEquals(sourceAccount, transaction.getSourceAccount());
+        assertNull(transaction.getDestinationAccount());
     }
 
     @Test
-    @Order(4)
-    public void testCreateTransaction4() {
-        assertNotNull(t4);
-        System.out.println(t4.toString());
+    void testCreateTransferTransaction() {
+        double transferAmount = 1500;
+
+        // Save initial balances for comparison
+        double initialSourceBalance = sourceAccount.getBalance();
+        double initialDestinationBalance = destinationAccount.getBalance();
+
+        // Create the transfer transaction
+        Transactions transaction = TransactionsFactory.createTransaction("Transfer", transferAmount, sourceAccount, destinationAccount);
+
+        // Assert that the transaction is not null
+        assertNotNull(transaction, "Transaction should not be null");
+
+        // Assert the transaction type is "Transfer"
+        assertEquals("Transfer", transaction.getTransactionType(), "Transaction type should be Transfer");
+
+        // Assert the transaction amount is correct
+        assertEquals(transferAmount, transaction.getAmount(), "Transaction amount should be " + transferAmount);
+
+        // Assert the source account is correct
+        assertEquals(sourceAccount, transaction.getSourceAccount(), "Source account should match the provided source account");
+
+        // Assert the destination account is correct
+        assertEquals(destinationAccount, transaction.getDestinationAccount(), "Destination account should match the provided destination account");
+
+        // Assert the source account balance has decreased by the transfer amount
+        assertEquals(initialSourceBalance - transferAmount, sourceAccount.getBalance(), "Source account balance should decrease by " + transferAmount);
+
+        // Assert the destination account balance has increased by the transfer amount
+        assertEquals(initialDestinationBalance + transferAmount, destinationAccount.getBalance(), "Destination account balance should increase by " + transferAmount);
+    }
+
+
+    @Test
+    void testCreateTransferTransactionWithoutDestinationAccount() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                TransactionsFactory.createTransaction("Transfer", 1500, sourceAccount, null)
+        );
+        assertEquals("Destination account is required for a transfer", exception.getMessage());
     }
 
     @Test
-    @Order(5)
-    public void testCreateTransaction5() {
-        assertNotNull(t5);
-        System.out.println(t5.toString());
+    void testCreateInvalidTransactionType() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                TransactionsFactory.createTransaction("InvalidType", 1500, sourceAccount, destinationAccount)
+        );
+        assertEquals("Invalid transaction type", exception.getMessage());
+    }
+
+    @Test
+    void testCreateTransactionWithNegativeAmount() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                TransactionsFactory.createTransaction("Deposit", -1000, sourceAccount, null)
+        );
+        assertEquals("Transaction amount must be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    void testCreateTransactionWithNullSourceAccount() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                TransactionsFactory.createTransaction("Deposit", 1000, null, null)
+        );
+        assertEquals("Source account cannot be null", exception.getMessage());
+    }
+
+    @Test
+    void testCreateTransactionWithEmptyTransactionType() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                TransactionsFactory.createTransaction("", 1000, sourceAccount, null)
+        );
+        assertEquals("Transaction type cannot be empty", exception.getMessage());
     }
 }
