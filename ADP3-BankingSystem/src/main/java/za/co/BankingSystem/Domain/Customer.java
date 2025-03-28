@@ -68,7 +68,7 @@ public class Customer{
                 '}';
     }
 
-    // Builder
+
     public static class Builder{
         private String customerID;
         private String customerName;
@@ -113,7 +113,11 @@ public class Customer{
             return this;
         }
 
-        public Builder copy(Customer customer){  //to create a copy of the existing customer
+
+        public Builder copy(Customer customer){
+
+        public Builder copy(Customer customer){  
+
             this.customerID = customer.getCustomerID();
             this.customerName = customer.getCustomerName();
             this.customerSurname = customer.getCustomerSurname();
