@@ -3,18 +3,18 @@ package za.co.BankingSystem.Factory;
 import za.co.BankingSystem.Domain.Admin;
 import za.co.BankingSystem.Util.Helper;
 /**
- * AdminFactory class to construct Admin objects.
- * This class uses the Builder pattern for constructing Admin objects.
- * It also performs validation on the input fields before creating an Admin.
+ * Adminfactory.java
+ * Admin Factory class
  *
- * Author: Franco Lukhele
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
  */
 public class AdminFactory {
     public static Admin createAdmin(String name, String email, String role, String contactNumber) {
-        // Generate unique admin ID
+
         String adminID = Helper.generateID();
 
-        // Validate inputs using Helper class
+
         if (Helper.isNullOrEmpty(name)) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
@@ -25,7 +25,7 @@ public class AdminFactory {
             throw new IllegalArgumentException("Role cannot be empty");
         }
         if (!Helper.isValidPhoneNumber(contactNumber)) {
-            throw new IllegalArgumentException("Invalid phone number format");  // Make sure this message is exactly as expected
+            throw new IllegalArgumentException("Invalid phone number format");
         }
 
         return new Admin.Builder()

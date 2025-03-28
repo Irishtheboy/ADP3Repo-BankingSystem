@@ -3,10 +3,11 @@ package za.co.BankingSystem.Domain;
 import java.util.Date;
 
 /**
- * Transactions class representing transactions in the system.
- * This class uses the Builder pattern for constructing Transaction objects.
+ * Transaction.java
+ * Transaction model class
  *
- * Author: Franco Lukhele
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
  */
 public class Transactions {
     private final String transactionID;
@@ -14,7 +15,7 @@ public class Transactions {
     private final double amount;
     private final Date transactionDate;
     private final Account sourceAccount;
-    private final Account destinationAccount; // Optional for transfers
+    private final Account destinationAccount;
 
     private Transactions(Builder builder) {
         this.transactionID = builder.transactionID;
@@ -31,7 +32,7 @@ public class Transactions {
         private double amount;
         private Date transactionDate;
         private Account sourceAccount;
-        private Account destinationAccount; // Optional for transfers
+        private Account destinationAccount;
 
         public Builder setTransactionID(String transactionID) {
             this.transactionID = transactionID;

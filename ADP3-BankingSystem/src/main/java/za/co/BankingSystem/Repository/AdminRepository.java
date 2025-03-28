@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repository for managing Admin entities. Implements CRUD operations.
- * Uses Singleton pattern to ensure only one instance of the repository exists.
+ * AdminRepo.java
+ * Admin Repo class
  *
- * Author: Franco Lukhele
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
  */
 public class AdminRepository implements IAdminRepository {
     private static AdminRepository repository = null;
