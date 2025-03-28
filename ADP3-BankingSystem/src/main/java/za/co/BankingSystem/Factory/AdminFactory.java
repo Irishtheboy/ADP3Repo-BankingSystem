@@ -16,7 +16,7 @@ public class AdminFactory {
 
         // Validate inputs using Helper class
         if (Helper.isNullOrEmpty(name)) {
-            throw new IllegalArgumentException("Admin name cannot be empty");
+            throw new IllegalArgumentException("Name cannot be empty");
         }
         if (!Helper.isValidEmail(email)) {
             throw new IllegalArgumentException("Invalid email format");
@@ -25,7 +25,7 @@ public class AdminFactory {
             throw new IllegalArgumentException("Role cannot be empty");
         }
         if (!Helper.isValidPhoneNumber(contactNumber)) {
-            throw new IllegalArgumentException("Invalid contact number");
+            throw new IllegalArgumentException("Invalid phone number format");  // Make sure this message is exactly as expected
         }
 
         return new Admin.Builder()
@@ -36,4 +36,6 @@ public class AdminFactory {
                 .setContactNumber(contactNumber)
                 .build();
     }
+
+
 }

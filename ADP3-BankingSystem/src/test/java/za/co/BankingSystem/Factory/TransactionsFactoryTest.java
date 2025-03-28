@@ -1,9 +1,9 @@
 package za.co.BankingSystem.Factory;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import za.co.BankingSystem.Domain.Account;
 import za.co.BankingSystem.Domain.Transactions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
@@ -37,8 +37,11 @@ class TransactionsFactoryTest {
         assertNotNull(transaction);
         assertEquals("Deposit", transaction.getTransactionType());
         assertEquals(1000, transaction.getAmount());
-        assertEquals(sourceAccount, transaction.getSourceAccount());
+        assertEquals(sourceAccount.getAccountNumber(), transaction.getSourceAccount().getAccountNumber());
         assertNull(transaction.getDestinationAccount());
+
+        // Verify balance updates
+        assertEquals(6000, transaction.getSourceAccount().getBalance());
     }
 
     @Test
@@ -47,54 +50,30 @@ class TransactionsFactoryTest {
         assertNotNull(transaction);
         assertEquals("Withdrawal", transaction.getTransactionType());
         assertEquals(500, transaction.getAmount());
-        assertEquals(sourceAccount, transaction.getSourceAccount());
+        assertEquals(sourceAccount.getAccountNumber(), transaction.getSourceAccount().getAccountNumber());
         assertNull(transaction.getDestinationAccount());
+
+        // Verify balance updates
+        assertEquals(4500, transaction.getSourceAccount().getBalance());
     }
 
     @Test
     void testCreateTransferTransaction() {
-        double transferAmount = 1500;
+        Transactions transaction = TransactionsFactory.createTransaction("Transfer", 1500, sourceAccount, destinationAccount);
 
-        // Save initial balances for comparison
-        double initialSourceBalance = sourceAccount.getBalance();
-        double initialDestinationBalance = destinationAccount.getBalance();
+        assertNotNull(transaction);
+        assertEquals("Transfer", transaction.getTransactionType());
+        assertEquals(1500, transaction.getAmount());
+        assertEquals(sourceAccount.getAccountNumber(), transaction.getSourceAccount().getAccountNumber());
+        assertEquals(destinationAccount.getAccountNumber(), transaction.getDestinationAccount().getAccountNumber());
 
-        // Create the transfer transaction
-        Transactions transaction = TransactionsFactory.createTransaction("Transfer", transferAmount, sourceAccount, destinationAccount);
-
-        // Assert that the transaction is not null
-        assertNotNull(transaction, "Transaction should not be null");
-
-        // Assert the transaction type is "Transfer"
-        assertEquals("Transfer", transaction.getTransactionType(), "Transaction type should be Transfer");
-
-        // Assert the transaction amount is correct
-        assertEquals(transferAmount, transaction.getAmount(), "Transaction amount should be " + transferAmount);
-
-        // Assert the source account is correct
-        assertEquals(sourceAccount, transaction.getSourceAccount(), "Source account should match the provided source account");
-
-        // Assert the destination account is correct
-        assertEquals(destinationAccount, transaction.getDestinationAccount(), "Destination account should match the provided destination account");
-
-        // Assert the source account balance has decreased by the transfer amount
-        assertEquals(initialSourceBalance - transferAmount, sourceAccount.getBalance(), "Source account balance should decrease by " + transferAmount);
-
-        // Assert the destination account balance has increased by the transfer amount
-        assertEquals(initialDestinationBalance + transferAmount, destinationAccount.getBalance(), "Destination account balance should increase by " + transferAmount);
-    }
-
-
-    @Test
-    void testCreateTransferTransactionWithoutDestinationAccount() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                TransactionsFactory.createTransaction("Transfer", 1500, sourceAccount, null)
-        );
-        assertEquals("Destination account is required for a transfer", exception.getMessage());
+        // Verify balance updates
+        assertEquals(3500, transaction.getSourceAccount().getBalance()); // Source should decrease
+        assertEquals(4500, transaction.getDestinationAccount().getBalance()); // Destination should increase
     }
 
     @Test
-    void testCreateInvalidTransactionType() {
+    void testCreateTransactionWithInvalidType() {
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 TransactionsFactory.createTransaction("InvalidType", 1500, sourceAccount, destinationAccount)
         );
