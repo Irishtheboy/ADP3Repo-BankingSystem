@@ -1,3 +1,5 @@
+package za.co.BankingSystem.Domain;
+
 import za.co.BankingSystem.Domain.*;
 import java.util.Date;
 

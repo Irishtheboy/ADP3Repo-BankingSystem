@@ -10,7 +10,7 @@ public class AccountFactory {
         Date dateOpened,
         Customer customer
     ){
-        if(){}
+        //if(){}
         return new Account.Builder()
         .accountNumber(accountNumber)
         .accountType(accountType)
