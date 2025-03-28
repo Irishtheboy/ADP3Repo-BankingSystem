@@ -1,6 +1,8 @@
 package za.co.BankingSystem.Util;
 
 import za.co.BankingSystem.Domain.Account;
+
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -53,4 +55,23 @@ public class Helper {
     public static boolean hasSufficientFunds(Account sourceAccount, double amount) {
         return sourceAccount.getBalance() >= amount;
     }
+
+    public static boolean validateStatement(String statementID, String customerID, List<String> transactions, String statementDate) {
+        // Example validation logic
+        if (statementID == null || statementID.isEmpty()) {
+            return false;
+        }
+        if (customerID == null || customerID.isEmpty()) {
+            return false;
+        }
+        if (transactions == null || transactions.isEmpty()) {
+            return false;
+        }
+        if (statementDate == null || statementDate.isEmpty()) {
+            return false;
+        }
+        // Additional validation rules can be added here
+        return true;
+    }
+
 }
