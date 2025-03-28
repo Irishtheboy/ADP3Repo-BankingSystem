@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class CheckingAccountRepositoryTest {
 
-    private static ICheckingAccountRepository repository = CheckingAccountRepository.getRepository();
-    private static CheckingAccount checkingAccount = CheckingAccountFactory.createCheckingAccount();
+    private static ICheckingAcccountRepository repository = CheckingAccountRepository.getRepository();
+    private static CheckingAccount checkingAccount = CheckingAccountFactory.CreateCheckingAccount(300,300);
 
     @Test
     void create() {

@@ -23,7 +23,7 @@ class CustomerRepositoryTest {
             "Naqeebah",
             "Khan",
             "88 Miami Street",
-            "naqeebah@gmail.com"
+            "naqeebah@gmail.com",
             "0724346731",
             emptyAccountList
     );
@@ -47,7 +47,7 @@ class CustomerRepositoryTest {
 
     @Test
     @Order(2)
-    public void testCreateCustomer() {
+    public void testCreateCustomer2() { // Renamed method to avoid duplicate names
         Customer created = repository.create(c2);
         assertNotNull(created);
         System.out.println("Created: " + created);
@@ -59,7 +59,7 @@ class CustomerRepositoryTest {
         Customer found = repository.read(c1.getCustomerID());
         assertNotNull(found);
         assertEquals(c1.getCustomerID(), found.getCustomerID());
-        System.out.println("Read" + found);
+        System.out.println("Read: " + found);
     }
 
     @Test
@@ -74,9 +74,9 @@ class CustomerRepositoryTest {
                 emptyAccountList
         );
 
-        Customer updated = repository.update(updatedCustomer);
+        Customer updated = repository.update(updateCustomer); // Fixed variable name
         assertNotNull(updated);
-        assertEquals("Naqeebah updated", updated.getCustomerName());
+        assertEquals("Naqeebah Updated", updated.getCustomerName()); // Fixed string case
         System.out.println("Updated: " + updated);
     }
 
@@ -86,18 +86,13 @@ class CustomerRepositoryTest {
         boolean deleted = repository.delete(c2.getCustomerID());
         assertTrue(deleted);
         System.out.println("Deleted customerID: " + c2.getCustomerID());
-
     }
 
     @Test
     @Order(6)
     public void testReadAllCustomers() {
         List<Customer> allCustomers = repository.findAll();
-        assertNotNull(allCustomers.isEmpty());
-        System.out.println("All customers: "+ allCustomers);
+        assertFalse(allCustomers.isEmpty()); // Fixed assertion
+        System.out.println("All customers: " + allCustomers);
     }
-
-
-
-
 }
