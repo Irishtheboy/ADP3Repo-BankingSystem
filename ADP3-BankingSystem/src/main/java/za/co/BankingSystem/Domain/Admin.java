@@ -1,11 +1,17 @@
 package za.co.BankingSystem.Domain;
 
+/**
+ * Admin class representing an administrator in the system.
+ * This class uses the Builder pattern for constructing Admin objects.
+ *
+ * Author: Franco Lukhele
+ */
 public class Admin {
-    public String adminID;
-    private  String name;
-    private  String email;
-    private  String role;
-    private  String contactNumber;
+    private String adminID;
+    private String name;
+    private String email;
+    private String role;
+    private String contactNumber;
 
     private Admin(Builder builder) {
         this.adminID = builder.adminID;
@@ -14,8 +20,6 @@ public class Admin {
         this.role = builder.role;
         this.contactNumber = builder.contactNumber;
     }
-
-
 
     public static class Builder {
         private String adminID;
@@ -54,5 +58,34 @@ public class Admin {
         }
     }
 
+    public String getAdminID() {
+        return adminID;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminID='" + adminID + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                '}';
+    }
 }

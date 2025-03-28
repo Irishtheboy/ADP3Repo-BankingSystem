@@ -5,6 +5,13 @@ import za.co.BankingSystem.Domain.Transactions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Repository for managing Transaction entities. Implements CRUD operations.
+ * Uses Singleton pattern to ensure only one instance of the repository exists.
+ *
+ * Author: Franco Lukhele
+ */
+
 public class TransactionRepository implements ITransactionRepository {
     private static TransactionRepository repository = null;
     private List<Transactions> transactionsList;

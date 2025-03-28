@@ -1,39 +1,20 @@
 package za.co.BankingSystem.Util;
 
-
-public class Helper {
-    public static boolean isNullOrEmpty(String s){
-        if(s.isEmpty() || s == null){
-            return true;
-        }
-        else return false;
-    }
-
-    //Setting Validation method for the account
-    //1. Validating the Account Number
-        
-    //2. Validating the Account Type
-
-    //3. Validating the Users account balance
-
-    //4.Validating the Customers account date open
-
-    //5. Validating the Customer Login
-
 import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class Helper {
 
-
+    // Generate a unique identifier
     public static String generateID() {
         return UUID.randomUUID().toString();
-
     }
 
-
-    // Validate email format
+    // Validate email format using regex
     public static boolean isValidEmail(String email) {
+        if (email == null) {
+            return false;
+        }
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return Pattern.matches(emailRegex, email);
     }
@@ -52,5 +33,4 @@ public class Helper {
     public static boolean isValidAmount(double amount) {
         return amount > 0;
     }
-
 }
