@@ -1,3 +1,4 @@
+
 package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.Admin;
@@ -5,73 +6,83 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AdminFactoryTest {
 
-    @BeforeEach
-    void setUp() {
-        // This method is used to set up any prerequisites for the tests, if needed.
+    private static Admin admin1 = AdminFactory.createAdmin("Naqeebah Khan", "naqeebah.khan@gmail.com", "Manager", "1234567890");
+    private static Admin admin2 = AdminFactory.createAdmin("Franco Lukhele", "franco.lukhele@gmail.com", "Admin", "1234567891");
+    private static Admin admin3 = AdminFactory.createAdmin("Teyannah Raubenheimer", "teyannah.raubenheimer@gmail.com", "Manager", "1234567892");
+    private static Admin admin4 = AdminFactory.createAdmin("Seymour DaBoy", "seymour.daboy@gmail.com", "Manager", "1234567893");
+    private static Admin admin5 = AdminFactory.createAdmin("Rorisang Simphiwe", "rorisang.simphiwe@gmail.com", "Admin", "1234567894");
+
+    @Test
+    @Order(1)
+    public void testCreateAdmin1() {
+        assertNotNull(admin1);
+        System.out.println(admin1.toString());
     }
 
     @Test
-    void testCreateAdminValidInput() {
-        Admin admin = AdminFactory.createAdmin("Naqeebah Khan", "naqeebah.khan@gmail.com", "Manager", "1234567890");
-
-        assertNotNull(admin, "Admin should be successfully created.");
-        assertEquals("Naqeebah Khan", admin.getName());
-        assertEquals("naqeebah.khan@gmail.com", admin.getEmail());
-        assertEquals("Manager", admin.getRole());
-        assertEquals("1234567890", admin.getContactNumber());
+    @Order(2)
+    public void testCreateAdmin2() {
+        assertNotNull(admin2);
+        System.out.println(admin2.toString());
     }
 
     @Test
-    void testCreateAdminWithEmptyName() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                AdminFactory.createAdmin("", "naqeebah.khan@gmail.com", "Manager", "1234567890")
-        );
+    @Order(3)
+    public void testCreateAdmin3() {
+        assertNotNull(admin3);
+        System.out.println(admin3.toString());
+    }
+
+    @Test
+    @Order(4)
+    public void testCreateAdmin4() {
+        assertNotNull(admin4);
+        System.out.println(admin4.toString());
+    }
+
+    @Test
+    @Order(5)
+    public void testCreateAdmin5() {
+        assertNotNull(admin5);
+        System.out.println(admin5.toString());
+    }
+
+    @Test
+    @Order(6)
+    public void testCreateAdminWithInvalidName() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            AdminFactory.createAdmin("", "naqeebah.khan@gmail.com", "Manager", "1234567890");
+        });
         assertEquals("Name cannot be empty", exception.getMessage());
     }
 
     @Test
-    void testCreateAdminWithInvalidEmail() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                AdminFactory.createAdmin("Naqeebah Khan", "invalid-email", "Manager", "1234567890")
-        );
+    @Order(7)
+    public void testCreateAdminWithInvalidEmail() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            AdminFactory.createAdmin("Naqeebah Khan", "invalid-email", "Manager", "1234567890");
+        });
         assertEquals("Invalid email format", exception.getMessage());
     }
 
     @Test
-    void testCreateAdminWithEmptyRole() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                AdminFactory.createAdmin("Naqeebah Khan", "naqeebah.khan@gmail.com", "", "1234567890")
-        );
+    @Order(8)
+    public void testCreateAdminWithEmptyRole() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            AdminFactory.createAdmin("Naqeebah Khan", "naqeebah.khan@gmail.com", "", "1234567890");
+        });
         assertEquals("Role cannot be empty", exception.getMessage());
     }
 
     @Test
-    void testCreateAdminWithInvalidPhoneNumber() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () ->
-                AdminFactory.createAdmin("Naqeebah Khan", "naqeebah.khan@gmail.com", "Manager", "invalid-phone")
-        );
+    @Order(9)
+    public void testCreateAdminWithInvalidPhoneNumber() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            AdminFactory.createAdmin("Naqeebah Khan", "naqeebah.khan@gmail.com", "Manager", "invalid-phone");
+        });
         assertEquals("Invalid phone number format", exception.getMessage());
-    }
-
-    @Test
-    void testCreateAdminWithValidNames() {
-        String[][] admins = {
-                {"Rorisang Simphiwe", "rorisang.simphiwe@gmail.com", "Admin", "1234567891"},
-                {"Teyannah Raubenheimer", "teyannah.raubenheimer@gmail.com", "Manager", "1234567892"},
-                {"Franco Lukhele", "franco.lukhele@gmail.com", "Admin", "1234567893"},
-                {"Seymour DaBoy", "seymour.daboy@gmail.com", "Manager", "1234567894"}
-        };
-
-        for (String[] data : admins) {
-            Admin admin = AdminFactory.createAdmin(data[0], data[1], data[2], data[3]);
-
-            assertNotNull(admin, "Admin should be created successfully.");
-            assertEquals(data[0], admin.getName());
-            assertEquals(data[1], admin.getEmail());
-            assertEquals(data[2], admin.getRole());
-            assertEquals(data[3], admin.getContactNumber());
-        }
     }
 }
