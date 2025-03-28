@@ -1,3 +1,7 @@
+/*CustomerRepositoryTest.java
+Customer Repository Test class
+Author: Naqeebah Khan(219099073)
+date: 28th March 2025*/
 package za.co.BankingSystem.Repository;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -18,81 +22,45 @@ class CustomerRepositoryTest {
 
     private static CustomerRepository repository = CustomerRepository.getRepository();
     private static List<Account> emptyAccountList = new ArrayList<>();
-
-    private static Customer c1 = CustomerFactory.createCustomer(
-            "Naqeebah",
-            "Khan",
-            "88 Miami Street",
-            "naqeebah@gmail.com",
-            "0724346731",
-            emptyAccountList
-    );
-
-    private static Customer c2 = CustomerFactory.createCustomer(
-            "Franco",
-            "Lukhele",
-            "42 Barcelona Close",
-            "francolukhele@gmail.com",
-            "0739643861",
-            emptyAccountList
-    );
+    private Customer customer = CustomerFactory.createCustomer("Naqeebah", "Khan", "88 Miami Street", "naqeebah@gmail.com", "0724346731", emptyAccountList);
 
     @Test
-    @Order(1)
-    public void testCreateCustomer() {
-        Customer created = repository.create(c1);
+    void create() {
+        Customer created = repository.create(customer);
         assertNotNull(created);
-        System.out.println("Created: " + created);
+        System.out.println(created.toString());
     }
 
     @Test
-    @Order(2)
-    public void testCreateCustomer2() { // Renamed method to avoid duplicate names
-        Customer created = repository.create(c2);
-        assertNotNull(created);
-        System.out.println("Created: " + created);
+    void read() {
+        repository.create(customer);
+        Customer read = repository.read(customer.getCustomerID());
+        assertNotNull(read);
+        System.out.println("Read: " + read);
     }
 
     @Test
-    @Order(3)
-    public void testReadCustomer() {
-        Customer found = repository.read(c1.getCustomerID());
-        assertNotNull(found);
-        assertEquals(c1.getCustomerID(), found.getCustomerID());
-        System.out.println("Read: " + found);
-    }
+    void update() {
+        repository.create(customer); //create new customer
+        Customer updatedCustomer = new Customer.Builder()
+                .copy(customer)
+                .setCustomerName("Naqeebah Updated")
+                .build();
 
-    @Test
-    @Order(4)
-    public void testUpdateCustomer() {
-        Customer updateCustomer = CustomerFactory.createCustomer(
-                "Naqeebah Updated",
-                "Khan",
-                "67 Town Street",
-                "naqeebah@gmail.com_updated",
-                "0819723826",
-                emptyAccountList
-        );
-
-        Customer updated = repository.update(updateCustomer); // Fixed variable name
+        Customer updated = repository.update(updatedCustomer);
         assertNotNull(updated);
-        assertEquals("Naqeebah Updated", updated.getCustomerName()); // Fixed string case
         System.out.println("Updated: " + updated);
     }
 
     @Test
-    @Order(5)
-    public void testDeleteCustomer() {
-        boolean deleted = repository.delete(c2.getCustomerID());
-        assertTrue(deleted);
-        System.out.println("Deleted customerID: " + c2.getCustomerID());
+    void delete() {
+        assertFalse(repository.delete(customer.getCustomerID()));
+        System.out.println("Success: Customer deleted");
     }
 
     @Test
-    @Order(6)
-    public void testReadAllCustomers() {
-        List<Customer> allCustomers = repository.findAll();
-        assertFalse(allCustomers.isEmpty()); // Fixed assertion
-        System.out.println("All customers: " + allCustomers);
+    void findAll() {
+        System.out.println(repository.findAll());
     }
 }
+

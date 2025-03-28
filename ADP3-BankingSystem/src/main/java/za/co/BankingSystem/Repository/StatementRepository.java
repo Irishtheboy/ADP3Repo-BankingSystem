@@ -1,3 +1,8 @@
+/*StatementRepository.java
+Statement Repository class
+Author: Naqeebah Khan(219099073)
+date: 27th March 2025*/
+
 package za.co.BankingSystem.Repository;
 
 import za.co.BankingSystem.Domain.Statement;
@@ -42,6 +47,11 @@ public class StatementRepository implements IStatementRepository{
             return true;
         }
         return false;
+    }
+
+
+    public void clear(){
+        statementList.clear();
     }
 
     public List<Statement> getAll(){

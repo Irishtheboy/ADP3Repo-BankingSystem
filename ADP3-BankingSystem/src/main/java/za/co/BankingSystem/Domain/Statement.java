@@ -1,3 +1,9 @@
+/*Statement.java
+Statement POJO class
+Author: Naqeebah Khan(219099073)
+date: 27th March 2025*/
+
+
 package za.co.BankingSystem.Domain;
 
 import java.util.List;
@@ -8,7 +14,7 @@ public class Statement {
     private List<String> transactions;
     private String statementDate;
 
-    // Private constructor to enforce the use of Builder
+
     private Statement(Builder builder) {
         this.statementID = builder.statementID;
         this.customerID = builder.customerID;
@@ -16,7 +22,7 @@ public class Statement {
         this.statementDate = builder.statementDate;
     }
 
-    // Getters
+
     public String getStatementID() {
         return statementID;
     }
@@ -33,7 +39,17 @@ public class Statement {
         return statementDate;
     }
 
-    // Builder class to help construct Statement objects
+    @Override
+    public String toString() {
+        return "Statement: " +
+                "statementID='" + statementID + '\'' +
+                ", customerID='" + customerID + '\'' +
+                ", transactions=" + transactions +
+                ", statementDate='" + statementDate + '\'' +
+                '}';
+    }
+
+
     public static class Builder {
         private String statementID;
         private String customerID;
@@ -60,7 +76,7 @@ public class Statement {
             return this;
         }
 
-        // Build method to return the constructed Statement
+
         public Statement build() {
             return new Statement(this);
         }

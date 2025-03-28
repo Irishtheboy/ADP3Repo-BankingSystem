@@ -1,3 +1,8 @@
+/*StatementRepositoryTest.java
+Statement Repository Test class
+Author: Naqeebah Khan(219099073)
+date: 28th March 2025*/
+
 package za.co.BankingSystem.Repository;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -39,12 +44,11 @@ class StatementRepositoryTest {
 
 
 
-    // Ensure a clean state before each test
-//    @BeforeEach
-//    void setUp() {
-//        repository.clear(); // Assuming you have a method to clear the repository
-//    }
-
+    //clean state before each test
+    @BeforeEach
+    void setUp() {
+        repository.clear();
+}
     @Test
     void create() {
         Statement created = repository.create(statement1);
@@ -67,6 +71,10 @@ class StatementRepositoryTest {
         repository.create(statement2);
         boolean deleted = repository.delete(statement2.getStatementID());
         assertTrue(deleted);
+
+        //to check if it deleted
+        Statement deletedStatement = repository.read(statement2.getStatementID());
+        assertNull(deletedStatement);
         System.out.println("Deleted statement: " + statement2.getStatementID());
     }
 
