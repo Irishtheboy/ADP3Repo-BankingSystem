@@ -1,4 +1,7 @@
-// Naqeebah Khan 219099073
+/*CustomerRepository.java
+Customer Repository class
+Author: Naqeebah Khan(219099073)
+date: 26th March 2025*/
 package za.co.BankingSystem.Repository;
 
 import za.co.BankingSystem.Domain.Customer;
@@ -15,7 +18,7 @@ public class CustomerRepository implements ICustomerRepository {
         customerList = new ArrayList<>();
     }
 
-    // ✅ Added getRepository() method for Singleton pattern
+
     public static CustomerRepository getRepository() {
         if (repository == null) {
             repository = new CustomerRepository();
