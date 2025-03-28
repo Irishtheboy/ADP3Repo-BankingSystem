@@ -3,14 +3,14 @@ package za.co.BankingSystem.Domain;
 import java.util.Date;
 
 public class Account {
-    // Private fields for encapsulation
+
     private final String accountNumber;
     private final String accountType;
     private final double balance;
     private final Date dateOpened;
     private final Customer customer;
 
-    // Private constructor to enforce Builder usage
+
     private Account(Builder builder) {
         this.accountNumber = builder.accountNumber;
         this.accountType = builder.accountType;
@@ -19,7 +19,7 @@ public class Account {
         this.customer = builder.customer;
     }
 
-    // ✅ Getters
+
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -89,7 +89,7 @@ public class Account {
         }
     }
 
-    // ✅ Proper toString() inside Account class
+
     @Override
     public String toString() {
         return "Account {" +

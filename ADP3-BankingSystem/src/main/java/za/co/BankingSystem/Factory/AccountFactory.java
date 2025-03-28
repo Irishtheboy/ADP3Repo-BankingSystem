@@ -14,7 +14,7 @@ public class AccountFactory {
             Date dateOpened,
             Customer customer
     ) {
-        // Validate required fields
+
         if (Helper.isNullOrEmpty(accountNumber) || Helper.isNullOrEmpty(accountType)) {
             throw new IllegalArgumentException("Account number and account type cannot be empty");
         }
@@ -31,7 +31,7 @@ public class AccountFactory {
             throw new IllegalArgumentException("Invalid account opening date");
         }
 
-        // Create and return an Account instance using the Builder pattern
+
         return new Account.Builder()
                 .setAccountNumber(accountNumber)
                 .setAccountType(accountType)
