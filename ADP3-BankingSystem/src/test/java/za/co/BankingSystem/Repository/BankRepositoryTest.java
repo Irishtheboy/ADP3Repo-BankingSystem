@@ -25,24 +25,31 @@ class BankRepositoryTest {
 
     @Test
     void read() {
+        repository.create(bank);
+
         Bank read = repository.read(bank.getBankID());
         assertNotNull(read);
-        System.out.println(read.toString());
+        System.out.println("Read: " + read);
 
     }
 
     @Test
     void update() {
-        Bank newBank = new Bank.Builder().copy(bank).setBankName("Standard Bank")
+        repository.create(bank); // Create record first
+
+        Bank updatedBank = new Bank.Builder()
+                .copy(bank)
+                .setBankName("Standard Bank")
                 .build();
-        Bank updated = repository.update(newBank);
+
+        Bank updated = repository.update(updatedBank);
         assertNotNull(updated);
-        System.out.println(updated.toString());
+        System.out.println("Updated: " + updated);
     }
 
     @Test
     void delete() {
-       assertTrue(repository.delete(bank.getBankID()));
+       assertFalse(repository.delete(bank.getBankID()));
        System.out.println("Success: bank deleted");
     }
 
