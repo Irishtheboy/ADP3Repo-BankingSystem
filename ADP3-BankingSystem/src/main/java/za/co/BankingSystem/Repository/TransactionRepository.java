@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repository for managing Transaction entities. Implements CRUD operations.
- * Uses Singleton pattern to ensure only one instance of the repository exists.
+ *TransactionRepo.java
+ *Transaction Repo class
  *
- * Author: Franco Lukhele
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
  */
 
 public class TransactionRepository implements ITransactionRepository {

@@ -1,10 +1,11 @@
 package za.co.BankingSystem.Domain;
 
 /**
- * Admin class representing an administrator in the system.
- * This class uses the Builder pattern for constructing Admin objects.
+ * Admin.java
+ * Admin model class
  *
- * Author: Franco Lukhele
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
  */
 public class Admin {
     private String adminID;

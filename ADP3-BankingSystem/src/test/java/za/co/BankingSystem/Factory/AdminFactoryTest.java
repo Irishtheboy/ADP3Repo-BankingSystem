@@ -5,7 +5,13 @@ import za.co.BankingSystem.Domain.Admin;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * AdminTest.java
+ * Admin Test class
+ *
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AdminFactoryTest {
 

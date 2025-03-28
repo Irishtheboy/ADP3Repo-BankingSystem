@@ -7,8 +7,14 @@ import za.co.BankingSystem.Domain.Account;
 import za.co.BankingSystem.Domain.Transactions;
 import za.co.BankingSystem.Factory.TransactionsFactory;
 
-import java.util.List;
 
+/**
+ * TransactionTest.java
+ * Transaction Test class
+ *
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
+ */
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
