@@ -1,3 +1,9 @@
+/*CheckingAccountRepository.java
+  CheckingAccountRepository Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 18 March 2025
+ */
+
 package za.co.BankingSystem.Repository;
 
 import za.co.BankingSystem.Domain.Bank;

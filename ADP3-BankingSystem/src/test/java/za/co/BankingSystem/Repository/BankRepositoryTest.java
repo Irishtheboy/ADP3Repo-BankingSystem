@@ -1,3 +1,9 @@
+/*BankRepositoryTest.java
+  BankRepositoryTest Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 26 March 2025
+ */
+
 package za.co.BankingSystem.Repository;
 
 
