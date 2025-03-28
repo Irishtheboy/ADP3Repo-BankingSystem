@@ -4,6 +4,13 @@ import za.co.BankingSystem.Domain.Admin;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * AdminRepo.java
+ * Admin Repo class
+ *
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
+ */
 public class AdminRepository implements IAdminRepository {
     private static AdminRepository repository = null;
     private List<Admin> adminList;
@@ -31,7 +38,7 @@ public class AdminRepository implements IAdminRepository {
     @Override
     public Admin read(String id) {
         for (Admin a : adminList) {
-            if (a.adminID.equals(id)) {  // Direct access since fields are final
+            if (a.getAdminID().equals(id)) {
                 return a;
             }
         }
@@ -40,11 +47,11 @@ public class AdminRepository implements IAdminRepository {
 
     @Override
     public Admin update(Admin admin) {
-        Admin oldAdmin = read(admin.adminID);
+        Admin oldAdmin = read(admin.getAdminID());
         if (oldAdmin == null) {
             return null;
         }
-        boolean success = delete(admin.adminID);
+        boolean success = delete(admin.getAdminID());
         if (success) {
             if (adminList.add(admin)) {
                 return admin;

@@ -1,22 +1,43 @@
 package za.co.BankingSystem.Factory;
-import za.co.BankingSystem.Domain.*;
+
+import za.co.BankingSystem.Domain.Account;
+import za.co.BankingSystem.Domain.Customer;
+import za.co.BankingSystem.Util.Helper;
+
 import java.util.Date;
 
 public class AccountFactory {
     public static Account createAccount(
-        String accountNumber,
-        String accountType,
-        double balance,
-        Date dateOpened,
-        Customer customer
-    ){
-        if(){}
-        return new Account.Builder()
-        .accountNumber(accountNumber)
-        .accountType(accountType)
-        .balance(balance)
-        .dateOpened(dateOpened)
-        .customer(customer).build();
+            String accountNumber,
+            String accountType,
+            double balance,
+            Date dateOpened,
+            Customer customer
+    ) {
+        // Validate required fields
+        if (Helper.isNullOrEmpty(accountNumber) || Helper.isNullOrEmpty(accountType)) {
+            throw new IllegalArgumentException("Account number and account type cannot be empty");
+        }
 
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer cannot be null");
+        }
+
+        if (balance < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative");
+        }
+
+        if (dateOpened == null || dateOpened.after(new Date())) {
+            throw new IllegalArgumentException("Invalid account opening date");
+        }
+
+        // Create and return an Account instance using the Builder pattern
+        return new Account.Builder()
+                .setAccountNumber(accountNumber)
+                .setAccountType(accountType)
+                .setBalance(balance)
+                .setDateOpened(dateOpened)
+                .setCustomer(customer)
+                .build();
     }
 }

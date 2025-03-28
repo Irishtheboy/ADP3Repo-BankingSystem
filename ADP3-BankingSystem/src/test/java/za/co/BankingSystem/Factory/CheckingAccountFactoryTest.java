@@ -1,3 +1,9 @@
+/*CheckingAccountFactoryTest.java
+  CheckingAccountFactoryTest Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 21 March 2025
+ */
+
 package za.co.BankingSystem.Factory;
 
 import org.junit.jupiter.api.*;

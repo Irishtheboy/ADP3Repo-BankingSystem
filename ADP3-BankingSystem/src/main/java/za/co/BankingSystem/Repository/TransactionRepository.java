@@ -5,6 +5,14 @@ import za.co.BankingSystem.Domain.Transactions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *TransactionRepo.java
+ *Transaction Repo class
+ *
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
+ */
+
 public class TransactionRepository implements ITransactionRepository {
     private static TransactionRepository repository = null;
     private List<Transactions> transactionsList;

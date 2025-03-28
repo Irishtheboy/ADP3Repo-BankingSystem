@@ -1,3 +1,9 @@
+/*BankFactory.java
+  BankFactory Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 12 March 2025
+ */
+
 package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.Account;

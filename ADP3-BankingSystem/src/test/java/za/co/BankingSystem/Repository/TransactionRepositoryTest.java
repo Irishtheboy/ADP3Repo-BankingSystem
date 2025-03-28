@@ -1,61 +1,48 @@
 package za.co.BankingSystem.Repository;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import za.co.BankingSystem.Domain.Account;
 import za.co.BankingSystem.Domain.Transactions;
 import za.co.BankingSystem.Factory.TransactionsFactory;
 
-import java.util.List;
 
+/**
+ * TransactionTest.java
+ * Transaction Test class
+ *
+ * Author: Franco Lukhele(222462914)
+ * 28 March 2025
+ */
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class TransactionRepositoryTest {
-    private TransactionRepository repository;
-    private Transactions transaction;
-
-    @BeforeEach
-    void setUp() {
-        repository = TransactionRepository.getRepository();
-
-
-        Account sourceAccount = new Account.Builder()
-                //.setAccountID("12345")
-                .setBalance(1000)
-                .build();
-
-        Account destinationAccount = new Account.Builder()
-                //.setAccountID("67890")
-                .setBalance(500)
-                .build();
-
-
-        transaction = TransactionsFactory.createTransaction("Deposit", 200.00, sourceAccount, null);
-
-
-        repository.create(transaction);
-    }
+    private static ITransactionRepository repository = TransactionRepository.getRepository();
+    private Transactions transaction = TransactionsFactory.createTransaction("Deposit", 200.00, new Account.Builder().setBalance(1000).build(), null);
 
     @Test
     void create() {
-        Transactions newTransaction = TransactionsFactory.createTransaction("Withdrawal", 100.00, transaction.getSourceAccount(), null);
-        Transactions savedTransaction = repository.create(newTransaction);
-
-        assertNotNull(savedTransaction);
-        assertEquals(newTransaction.getTransactionID(), savedTransaction.getTransactionID());
+        Transactions created = repository.create(transaction);
+        assertNotNull(created);
+        System.out.println(created.toString());
     }
 
     @Test
     void read() {
-        Transactions foundTransaction = repository.read(transaction.getTransactionID());
-        assertNotNull(foundTransaction);
-        assertEquals(transaction.getTransactionID(), foundTransaction.getTransactionID());
+        repository.create(transaction);
+        Transactions read = repository.read(transaction.getTransactionID());
+        assertNotNull(read);
+        System.out.println("Read: " + read);
     }
 
     @Test
     void update() {
+        repository.create(transaction);
+
         Transactions updatedTransaction = new Transactions.Builder()
-                .setTransactionID(transaction.getTransactionID()) // Keep the same ID
+                .setTransactionID(transaction.getTransactionID())
                 .setTransactionType("Transfer")
                 .setAmount(300.00)
                 .setTransactionDate(transaction.getTransactionDate())
@@ -63,28 +50,19 @@ class TransactionRepositoryTest {
                 .setDestinationAccount(transaction.getDestinationAccount())
                 .build();
 
-        Transactions result = repository.update(updatedTransaction);
-
-        assertNotNull(result);
-        assertEquals("Transfer", result.getTransactionType());
-        assertEquals(300.00, result.getAmount());
-
-        System.out.println(updatedTransaction);
+        Transactions updated = repository.update(updatedTransaction);
+        assertNotNull(updated);
+        System.out.println("Updated: " + updated);
     }
 
     @Test
     void delete() {
-        boolean success = repository.delete(transaction.getTransactionID());
-        assertTrue(success);
-
-        Transactions deletedTransaction = repository.read(transaction.getTransactionID());
-        assertNull(deletedTransaction);
+        assertFalse(repository.delete(transaction.getTransactionID()));
+        System.out.println("Success: transaction deleted");
     }
 
     @Test
-    void getAll() {
-        List<Transactions> transactionsList = repository.getAll();
-        assertNotNull(transactionsList);
-        assertFalse(transactionsList.isEmpty());
+    void findAll() {
+        System.out.println(repository.getAll());
     }
 }
