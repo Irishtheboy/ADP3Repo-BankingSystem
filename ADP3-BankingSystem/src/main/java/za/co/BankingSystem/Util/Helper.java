@@ -1,3 +1,9 @@
+/*
+ * Helper.java
+ * Helper Class
+ * Author: Rorisang Makgana (230602363)
+ * Date: 28th March 2025
+ */
 package za.co.BankingSystem.Util;
 
 public class Helper {

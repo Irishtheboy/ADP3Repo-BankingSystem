@@ -1,3 +1,9 @@
+/*
+ * Account.java
+ * Account Class
+ * Author: Rorisang Makgana (230602363)
+ * Date: 28th March 2025
+ */
 package za.co.BankingSystem.Domain;
 
 import za.co.BankingSystem.Domain.*;
