@@ -1,3 +1,9 @@
+/*BankFactoryTest.java
+  BankFactoryTest Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 21 March 2025
+ */
+
 package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.Bank;
@@ -57,7 +63,7 @@ class BankFactoryTest {
     @Order(1)
     public void testCreateBank1() {
         assertNotNull(b1);
-        //assertNotNull(b1.getBankID());
+        assertNotNull(b1.getBankID());
         System.out.println(b1.toString());
     }
 

@@ -1,3 +1,9 @@
+/*CheckingAccount.java
+  CheckingAccount Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 10 March 2025
+ */
+
 package za.co.BankingSystem.Domain;
 
 public class CheckingAccount {

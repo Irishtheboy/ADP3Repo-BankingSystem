@@ -58,6 +58,9 @@ public class Helper {
 
     public static boolean validateStatement(String statementID, String customerID, List<String> transactions, String statementDate) {
 
+
+        
+
         if (statementID == null || statementID.isEmpty()) {
             return false;
         }

@@ -1,3 +1,9 @@
+/*CheckingAccountFactory.java
+  CheckingAccountFactory Class
+  Author: Teyana Raubenheimer (230237622)
+  Date: 13 March 2025
+ */
+
 package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.CheckingAccount;

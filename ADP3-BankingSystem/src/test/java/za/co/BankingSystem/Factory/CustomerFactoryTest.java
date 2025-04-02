@@ -1,4 +1,7 @@
-// Naqeebah Khan 219099073
+/*CustomerFactoryTest.java
+Customer Factory Test class
+Author: Naqeebah Khan(219099073)
+date: 28th March 2025*/
 package za.co.BankingSystem.Factory;
 
 import za.co.BankingSystem.Domain.Customer;
@@ -97,6 +100,7 @@ class CustomerFactoryTest {
     @Test
     @Order(6)
     public void testCreateCustomerWithInvalidName() {
+        System.out.println("Testing customer with invalid name");
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             CustomerFactory.createCustomer("", "Khan", "88 Miami Street",
                     "testemail@gmail.com", "0724346731", emptyAccountList);

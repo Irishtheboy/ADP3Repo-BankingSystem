@@ -113,7 +113,11 @@ public class Customer{
             return this;
         }
 
+
         public Builder copy(Customer customer){
+
+        public Builder copy(Customer customer){  
+
             this.customerID = customer.getCustomerID();
             this.customerName = customer.getCustomerName();
             this.customerSurname = customer.getCustomerSurname();
