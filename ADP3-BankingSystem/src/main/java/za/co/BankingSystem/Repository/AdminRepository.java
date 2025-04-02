@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * AdminRepo.java
- * Admin Repo class
+ * AdminRepository.java
+ * Repository class for Admin
  *
- * Author: Franco Lukhele(222462914)
+ * Author: Franco Lukhele (222462914)
  * 28 March 2025
  */
-public class AdminRepository implements IAdminRepository {
+
+public class AdminRepository {
     private static AdminRepository repository = null;
     private List<Admin> adminList;
 
@@ -26,50 +27,37 @@ public class AdminRepository implements IAdminRepository {
         return repository;
     }
 
-    @Override
     public Admin create(Admin admin) {
         boolean success = adminList.add(admin);
-        if (success) {
+        return success ? admin : null;
+    }
+
+    public Admin read(String adminID) {
+        return adminList.stream()
+                .filter(admin -> admin.getAdminID().equals(adminID))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Admin update(Admin admin) {
+        Admin existingAdmin = read(admin.getAdminID());
+        if (existingAdmin != null) {
+            delete(admin.getAdminID());
+            adminList.add(admin);
             return admin;
         }
         return null;
     }
 
-    @Override
-    public Admin read(String id) {
-        for (Admin a : adminList) {
-            if (a.getAdminID().equals(id)) {
-                return a;
-            }
+    public boolean delete(String adminID) {
+        Admin adminToDelete = read(adminID);
+        if (adminToDelete != null) {
+            adminList.remove(adminToDelete);
+            return true;
         }
-        return null;
+        return false;
     }
 
-    @Override
-    public Admin update(Admin admin) {
-        Admin oldAdmin = read(admin.getAdminID());
-        if (oldAdmin == null) {
-            return null;
-        }
-        boolean success = delete(admin.getAdminID());
-        if (success) {
-            if (adminList.add(admin)) {
-                return admin;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public boolean delete(String id) {
-        Admin adminToDelete = read(id);
-        if (adminToDelete == null) {
-            return false;
-        }
-        return adminList.remove(adminToDelete);
-    }
-
-    @Override
     public List<Admin> getAll() {
         return adminList;
     }

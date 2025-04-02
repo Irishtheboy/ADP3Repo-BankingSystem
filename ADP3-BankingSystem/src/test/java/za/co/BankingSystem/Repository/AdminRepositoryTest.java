@@ -14,6 +14,10 @@ class AdminRepositoryTest {
     @BeforeEach
     void setUp() {
         adminRepo = AdminRepository.getRepository();
+
+        // **Clear repository to prevent data from previous tests**
+        adminRepo.getAll().clear();
+
         admin = new Admin.Builder()
                 .setAdminID("A001")
                 .setName("Naqeebah Khan")
@@ -23,6 +27,7 @@ class AdminRepositoryTest {
                 .build();
         adminRepo.create(admin);
     }
+
 
     @Test
     void create() {
