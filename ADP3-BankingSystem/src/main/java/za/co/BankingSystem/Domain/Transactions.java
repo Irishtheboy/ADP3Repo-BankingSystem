@@ -69,6 +69,18 @@ public class Transactions {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Transactions{" +
+                "transactionID='" + transactionID + '\'' +
+                ", transactionType='" + transactionType + '\'' +
+                ", amount=" + amount +
+                ", transactionDate=" + transactionDate +
+                ", sourceAccount=" + sourceAccount +
+                ", destinationAccount=" + destinationAccount +
+                '}';
+    }
+
     public String getTransactionID() { return transactionID; }
     public String getTransactionType() { return transactionType; }
     public double getAmount() { return amount; }

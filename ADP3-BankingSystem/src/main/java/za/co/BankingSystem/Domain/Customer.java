@@ -1,4 +1,7 @@
-// Naqeebah Khan 219099073
+/*Customer.java
+Customer POJO class
+Author: Naqeebah Khan(219099073)
+date: 24th March 2025*/
 package za.co.BankingSystem.Domain;
 
 import java.util.List;
@@ -65,7 +68,7 @@ public class Customer{
                 '}';
     }
 
-    // Builder
+
     public static class Builder{
         private String customerID;
         private String customerName;
@@ -107,6 +110,17 @@ public class Customer{
 
         public Builder setAccounts(List<Account> accounts){
             this.accounts = accounts;
+            return this;
+        }
+
+        public Builder copy(Customer customer){
+            this.customerID = customer.getCustomerID();
+            this.customerName = customer.getCustomerName();
+            this.customerSurname = customer.getCustomerSurname();
+            this.customerAddress = customer.getCustomerAddress();
+            this.customerEmail = customer.getCustomerEmail();
+            this.phoneNumber = customer.getPhoneNumber();
+            this.accounts = customer.getAccounts();
             return this;
         }
 
